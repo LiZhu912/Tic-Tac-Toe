@@ -1,15 +1,22 @@
+# Author: Li Qian Zhu
+# This program is a simple command line tic-tac-toe game.
+
+# Set up the board.
 board = ["-","-","-",
          "-","-","-",
          "-","-","-"]
 
+# Initialize X and O symbols.
 X = "X"
 O = "O"
 
+# Display the game board and position reference board.
 def display_board():
     print(board[0],"|",board[1],"|",board[2]+"\t"+"1","|","2","|","3"+"\n"+
         board[3],"|",board[4],"|",board[5]+"\t"+"4","|","5","|","6"+"\n"+
         board[6],"|",board[7],"|",board[8]+"\t"+"7","|","8","|","9")
 
+# Start the game.
 def start_game():
     game_ongoing = True
     display_board()
@@ -33,17 +40,21 @@ def start_game():
         if check_tie() == True:
             print("Match tied!")
             break
-        
+         
+# Handle each player's turn.
 def handle_turn(current_player):
     while True:
         position = input(current_player+"'s Turn. Pick a position from 1-9: ")
 
+        # Check if input is an int.
         try:
             if isinstance(int(position),int):
                 pass
         except:
             print("Invalid position type")
             continue
+                  
+        # Check if input is in range.
         if int(position) >=1 and int(position) <=9:
             position = int(position)-1
         else:
@@ -83,7 +94,7 @@ def check_win(current_player):
     
     else:
         return False
-
+# Check if there is a tie.
 def check_tie():
     if "-" not in board:
         return True
